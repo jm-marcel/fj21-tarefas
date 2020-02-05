@@ -1,5 +1,6 @@
 package br.com.caelum.tarefas.controller;
 
+// import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
 
@@ -27,10 +28,41 @@ public class TarefasController {
 		return "tarefa/adicionada";
 	}
 	
+	@RequestMapping("removeTarefa")
+	public String remove(Tarefa tarefa) {
+		JdbcTarefaDao dao = new JdbcTarefaDao();
+		dao.remove(tarefa);
+		// return "redirect:listaTarefas"; // redirecionamento no lado do cliente
+		return "forward:listaTarefas"; // redirecionamento no lado do servidor
+	}
+	
 	@RequestMapping("listaTarefas")
 	public String lista(Model model) {
 		JdbcTarefaDao dao = new JdbcTarefaDao();
 		model.addAttribute("tarefas", dao.lista());
 		return "tarefa/lista";
+	}
+	
+	@RequestMapping("mostraTarefa")
+	public String mostra(Long id, Model model) {
+		JdbcTarefaDao dao = new JdbcTarefaDao();
+		model.addAttribute("tarefa", dao.buscaPorId(id));
+		return "tarefa/mostra";
+	}
+	
+	@RequestMapping("alteraTarefa")
+	public String altera(Tarefa tarefa) {
+		JdbcTarefaDao dao = new JdbcTarefaDao();
+		dao.altera(tarefa);
+		// return "redirect:listaTarefas"; // redirecionamento no lado do cliente
+		return "forward:listaTarefas"; // redirecionamento no lado do servidor
+	}
+	
+	@RequestMapping("finalizaTarefa")
+	public String finaliza(Long id, Model model) {
+		JdbcTarefaDao dao = new JdbcTarefaDao();
+	    dao.finaliza(id);
+	    model.addAttribute("tarefa", dao.buscaPorId(id));
+	    return "tarefa/finalizada";
 	}
 }
