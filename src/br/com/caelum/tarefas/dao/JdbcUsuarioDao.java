@@ -5,19 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
+// import javax.sql.DataSource;
 
+import br.com.caelum.tarefas.ConnectionFactory;
 import br.com.caelum.tarefas.modelo.Usuario;
 
 public class JdbcUsuarioDao {
 	private Connection connection;
 
-	public JdbcUsuarioDao(DataSource dataSource) {
-		try {
-			connection = dataSource.getConnection();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+	public JdbcUsuarioDao() {
+		this.connection = new ConnectionFactory().getConnection();
 	}
 
 	public boolean existeUsuario(Usuario usuario) {
@@ -28,7 +25,7 @@ public class JdbcUsuarioDao {
 
 		try {
 			PreparedStatement stmt = this.connection
-					.prepareStatement("select * from usuarios where login = ? and senha = ?");
+					.prepareStatement("SELECT * FROM usuarios WHERE login = ? AND senha = ?");
 			stmt.setString(1, usuario.getLogin());
 			stmt.setString(2, usuario.getSenha());
 			ResultSet rs = stmt.executeQuery();
