@@ -12,23 +12,15 @@
 	<body>
 		<script type="text/javascript">
 			function finalizar(id) {
-				<!-- $.get("finalizaTarefa?id=" + id, function(dadosDeResposta) {
-					alert("Tarefa Finalizada!")
-				}); -->
 				$.post("finalizaTarefa", {'id' : id}, function(resposta) {
 					// selecionando o elemento html através da 
 		            // ID e alterando o HTML dele 
+		            // $("#tarefa_" + id).html("Finalizado");
 		            $("#tarefa_" + id).html(resposta);
-					alert(resposta);
+					// alert(resposta);
 				});
 			}
 		</script>
-		<!--<script type="text/javascript">
-			function remover(id) {
-				
-			}
-		</script>-->
-		<a href="novaTarefa">Criar nova tarefa</a><br /><br />
 		<table border="1">
 			<tr>
 				<th>Id</th>
@@ -44,7 +36,7 @@
 					<td>${tarefa.descricao}</td>
 					<c:choose>
 						<c:when test="${tarefa.finalizado eq false}">
-							<td id="tarefa_${tarefa.id}">
+							<td>
 								<a href="#" onclick="finalizar(${tarefa.id})">Finalizar</a>
 							</td>
 						</c:when>
@@ -59,6 +51,6 @@
 					<td><a href="removeTarefa?id=${tarefa.id}">Remover</a></td>
 				</tr>
 			</c:forEach>
-		</table>
+		</table><br /><a href="novaTarefa">Criar nova tarefa</a><br />
 	</body>
 </html>

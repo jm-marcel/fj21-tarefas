@@ -7,5 +7,7 @@
 	</head>
 	<body>
 		Nova tarefa adicionada com sucesso!
+		<br /><br />
+		<a href="listaTarefas">Retornar</a><br />
 	</body>
 </html>
