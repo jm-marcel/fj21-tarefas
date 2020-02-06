@@ -4,6 +4,7 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
+		<link type="text/css" href="resources/css/tarefas.css" rel="stylesheet" />
 	</head>
 	<body>
 		<h2>Página de Login das Tarefas</h2>

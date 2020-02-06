@@ -7,6 +7,7 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
+		<link type="text/css" href="resources/css/tarefas.css" rel="stylesheet" />
 		<script type="text/javascript" src="resources/js/jquery.js"></script>
 	</head>
 	<body>
