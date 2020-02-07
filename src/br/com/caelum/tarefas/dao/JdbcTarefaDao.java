@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class JdbcTarefaDao {
+public class JdbcTarefaDao implements TarefaDao {
 	private final Connection connection;
 
 	@Autowired
