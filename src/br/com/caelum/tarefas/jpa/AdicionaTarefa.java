@@ -20,9 +20,15 @@ public class AdicionaTarefa {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("tarefas");
         EntityManager manager = factory.createEntityManager();
 
-        manager.getTransaction().begin();        
-        manager.persist(tarefa);
-        manager.getTransaction().commit();    
+        try {
+        	manager.getTransaction().begin();        
+            manager.persist(tarefa);
+            manager.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			manager.getTransaction().rollback();
+			throw e;
+		}    
 
         System.out.println("ID da tarefa: " + tarefa.getId());
 

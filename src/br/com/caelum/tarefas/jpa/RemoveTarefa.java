@@ -15,9 +15,15 @@ public class RemoveTarefa {
 		
 		Tarefa encontrada = manager.find(Tarefa.class, 1L);
 		
-		manager.getTransaction().begin();
-		manager.remove(encontrada);
-		manager.getTransaction().commit();
+		try {
+        	manager.getTransaction().begin();        
+            manager.remove(encontrada);
+            manager.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			manager.getTransaction().rollback();
+			throw e;
+		}
 	}
 
 }
